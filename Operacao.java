@@ -23,4 +23,19 @@ public class Operacao {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
+
+
+
+
+
+public void deposito(Conta c,float valor){
+	c.setSaldo(c.getSaldo()+valor);
+}
+
+
+public void saque(Conta c,float valor){
+	if(valor>=c.getSaldo()){
+		c.setSaldo(c.getSaldo()-valor);
+}
+}
 }
