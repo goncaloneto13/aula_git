@@ -23,24 +23,22 @@ public class Operacao {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
-	
-	public void transferencia(Conta c1, Conta c2, float valor){
-		if(valor >= c1.saldo){
+
+	public void transferencia(Conta c1, Conta c2, float valor) {
+		if (valor >= c1.saldo) {
 			c1.setSaldo(c1.getSaldo() - valor);
 			c2.setSaldo(c2.getSaldo() + valor);
 		}
-		
+
 	}
 
+	public void deposito(Conta c, float valor) {
+		c.setSaldo(c.getSaldo() + valor);
+	}
 
-public void deposito(Conta c,float valor){
-	c.setSaldo(c.getSaldo()+valor);
-}
-
-
-public void saque(Conta c,float valor){
-	if(valor>=c.getSaldo()){
-		c.setSaldo(c.getSaldo()-valor);
-}
-}
+	public void saque(Conta c, float valor) {
+		if (valor >= c.getSaldo()) {
+			c.setSaldo(c.getSaldo() - valor);
+		}
+	}
 }
