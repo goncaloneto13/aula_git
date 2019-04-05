@@ -28,7 +28,10 @@ public class Operacao {
 		if (valor >= c1.saldo) {
 			c1.setSaldo(c1.getSaldo() - valor);
 			c2.setSaldo(c2.getSaldo() + valor);
+			System.out.println("Transferência completa");
 		}
+		System.out.println("Saldo insuficiente");
+		
 
 	}
 
