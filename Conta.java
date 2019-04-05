@@ -44,6 +44,19 @@ public class Conta {
 		}
 	}
 
+	
+	public void transferencia(Conta c1, Conta c2, float valor) {
+		if (valor <= c1.saldo) {
+			c1.setSaldo(c1.getSaldo() - valor);
+			c2.setSaldo(c2.getSaldo() + valor);
+			Operacao op = new Operacao(3,valor);
+			operacoes.add(op);
+			System.out.println("Transferência completa");
+		}
+		System.out.println("Saldo insuficiente");
+		
+
+	}
 
 	
 }
