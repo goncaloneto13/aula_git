@@ -19,6 +19,52 @@ public class Main {
 			} else if (op == 2) {
 				cadastrarCliente();
 			} else if (op == 3) {
+				int resul;
+				Menu menuOperacoes = new Menu("Menu Operações", Arrays.asList("Saque", "Depósito", "Transferência"));
+				resul = menuOperacoes.getSelection();
+				if(resul == 1){
+					
+				}if(resul == 2){
+					
+				}if(resul == 3){
+					System.out.println("Informe o nome do cliente que deseja transferir:");
+					s = new Scanner(System.in);
+					String cliente1 = s.nextLine();
+					Cliente c1 = clientes.buscaCliente(cliente1);
+					if(c1 == null){
+						System.out.println("Cliente não encontrado");
+					}
+					System.out.println("Informe o número da conta que deseja transferir:");
+					s = new Scanner(System.in);
+					int conta1 = s.nextInt();
+					Conta continha = c1.getConta(conta1);
+					if(continha == null){
+						System.out.println("Conta não encontrada");
+					}
+					System.out.println("Informe o nome do cliente que receberá a transferência:");
+					s = new Scanner(System.in);
+					String cliente2 = s.nextLine();
+					Cliente c2 = clientes.buscaCliente(cliente2);
+					if(c1 == null){
+						System.out.println("Cliente não encontrado");
+					}
+					System.out.println("Informe o número da conta que receberá a quantia:");
+					s = new Scanner(System.in);
+					int conta2 = s.nextInt();
+					Conta continha2 = c1.getConta(conta2);
+					if(continha == null){
+						System.out.println("Conta não encontrada");
+					}
+					System.out.println("Informe a quantia que deseja transferir:");
+					s = new Scanner(System.in);
+					float valor = s.nextFloat();
+					if(valor < 1){
+						System.out.println("Não é possível transferir essa quantia");
+					}
+					Operacao operarei = new Operacao();
+					operarei.transferencia(continha, continha2, valor);
+
+				}
 			}
 		} while (op != 4);
 
