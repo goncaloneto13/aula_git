@@ -48,7 +48,7 @@ public class Main {
 	{
 		for (Cliente c : clientes)
 		{
-			if (c.getNome == nomeDoCliente)
+			if (c.getNome() == nomeDoCliente)
 			{
 				return c;
 			}
