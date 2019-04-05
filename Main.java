@@ -6,6 +6,7 @@ public class Main {
 
 	private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	private static Scanner s;
+	private static int numContas = 0;
 
 	public static void main(String[] args) {
 		int op;
@@ -15,7 +16,7 @@ public class Main {
 			op = mainMenu.getSelection();
 
 			if (op == 1) {
-
+				MenuConta();
 			} else if (op == 2) {
 				cadastrarCliente();
 			} else if (op == 3) {
@@ -94,7 +95,7 @@ public class Main {
 	{
 		for (Cliente c : clientes)
 		{
-			if (c.getNome() == nomeDoCliente)
+			if (c.getNome().equals(nomeDoCliente))
 			{
 				return c;
 			}
@@ -106,5 +107,61 @@ public class Main {
 	public static Conta BuscarConta (Cliente cliente, int numeroDaConta)
 	{
 		return cliente.getConta(numeroDaConta);
+	}
+	
+	public static void MenuConta ()
+	{
+		System.out.println("\n\n Menu de Conta");
+		System.out.println("Nome do Cliente: ");
+		
+		s = new Scanner(System.in);
+		String nomeDoCliente = s.nextLine();
+		Cliente cliente = BuscarCliente(nomeDoCliente);
+		
+		if (cliente != null)
+		{
+			System.out.println("1. Criar nova conta.");
+			System.out.println("2. Buscar Conta.");
+			s = new Scanner(System.in);
+			
+			switch (s.nextInt()) 
+			{
+			case 1 :
+				CriarConta(cliente);
+				System.out.println("Conta criada com sucesso!");
+				break;
+			case 2 :
+				System.out.println("\nDigite o número da conta: ");
+				s = new Scanner(System.in);
+				
+				Conta conta = BuscarConta(cliente, s.nextInt());
+				
+				if (conta != null)
+				{
+					System.out.println("\nSaldo: " + conta.getSaldo());
+					System.out.println("\nOperações: " + conta.getOperacoes().toString());
+				}
+				else
+					System.out.println("Conta não encontrada!");
+				break;
+			default:
+				System.out.println("Opção não consta no menu.");
+				break;
+			}
+		}
+		else 
+		{
+			System.out.println("Cliente não encontrado!");
+		}
+	}
+	
+	public static void CriarConta (Cliente cliente)
+	{
+		Conta conta = new Conta();
+		
+		numContas++;
+		
+		conta.setNum(numContas);
+		cliente.setConta(conta);
 	}
 }
