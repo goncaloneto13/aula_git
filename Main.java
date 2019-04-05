@@ -30,30 +30,33 @@ public class Main {
 					System.out.println("Informe o nome do cliente que deseja transferir:");
 					s = new Scanner(System.in);
 					String cliente1 = s.nextLine();
-					Cliente c1 = clientes.buscaCliente(cliente1);
-					if(c1 == null){
+					//Cliente c1 = clientes.BuscarCliente(cliente1);
+					if(clientes.BuscarCliente(cliente1) == null){
 						System.out.println("Cliente não encontrado");
+						return
 					}
 					System.out.println("Informe o número da conta que deseja transferir:");
 					s = new Scanner(System.in);
 					int conta1 = s.nextInt();
-					Conta continha = c1.getConta(conta1);
-					if(continha == null){
+					if(clientes.BuscarCliente(cliente1).getConta(conta1) == null){
 						System.out.println("Conta não encontrada");
+						return
 					}
 					System.out.println("Informe o nome do cliente que receberá a transferência:");
 					s = new Scanner(System.in);
 					String cliente2 = s.nextLine();
-					Cliente c2 = clientes.buscaCliente(cliente2);
-					if(c1 == null){
+					//Cliente c2 = clientes.BuscarCliente(cliente2);
+					if(clientes.BuscarCliente(cliente2) == null){
 						System.out.println("Cliente não encontrado");
+						return;
 					}
 					System.out.println("Informe o número da conta que receberá a quantia:");
 					s = new Scanner(System.in);
 					int conta2 = s.nextInt();
-					Conta continha2 = c1.getConta(conta2);
-					if(continha == null){
+					
+					if(clientes.BuscarCliente(cliente2).getConta(conta2) == null){
 						System.out.println("Conta não encontrada");
+						return
 					}
 					System.out.println("Informe a quantia que deseja transferir:");
 					s = new Scanner(System.in);
@@ -62,8 +65,9 @@ public class Main {
 						System.out.println("Não é possível transferir essa quantia");
 					}
 					Operacao operarei = new Operacao();
-					operarei.transferencia(continha, continha2, valor);
-
+					operarei.transferencia(c1.getConta(conta1), c2.getConta(conta2), valor);
+					clientes.BuscarCliente(cliente1).getConta(conta1).setOperacoes(operarei);
+					clientes.BuscarCliente(cliente2).getConta(conta2).setOperacoes(operarei);
 				}
 			}
 		} while (op != 4);
@@ -102,6 +106,18 @@ public class Main {
 
 		return null;
 	}
+	
+	public static int BuscaIndice(String nomeDoCliente){
+		for(i = 0; i < clientes.size(); i++){
+			if(nomeDocliente.equals(clintes[i].getNome();)){
+				return i;
+			}
+		}else{
+			return -1;
+		}
+	}
+	
+
 
 	public static Conta BuscarConta (Cliente cliente, int numeroDaConta)
 	{

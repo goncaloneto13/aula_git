@@ -25,14 +25,13 @@ public class Operacao {
 	}
 
 	public void transferencia(Conta c1, Conta c2, float valor) {
-		if (valor >= c1.saldo) {
+		if (valor <= c1.getSaldo()) {
 			c1.setSaldo(c1.getSaldo() - valor);
 			c2.setSaldo(c2.getSaldo() + valor);
 			System.out.println("Transferência completa");
-		}
+		}else{
 		System.out.println("Saldo insuficiente");
-		
-
+		}
 	}
 
 	public void deposito(Conta c, float valor) {
