@@ -28,4 +28,22 @@ public class Conta {
 		this.operacoes = operacoes;
 	}
 	
+	public void saque(float valor){
+		if(valor<=this.getSaldo() && valor>0){
+			Operacao op = new Operacao(1,valor);
+			operacoes.add(op);
+			this.setSaldo(this.getSaldo()-valor);
+	}
+	}
+	public void deposito(float valor){
+		if(valor>0) {
+			Operacao op = new Operacao(2,valor);
+			operacoes.add(op);
+			this.setSaldo(this.getSaldo()+valor);
+		
+		}
+	}
+
+
+	
 }
