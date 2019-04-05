@@ -42,4 +42,12 @@ public class Menu {
 		}
 		return op;
 	}
+
+	public void CriarConta (Cliente cliente, int num)
+	{
+		Conta conta = new Conta();
+		conta.setNum(num);
+
+		cliente.setConta(conta);
+	}
 }
