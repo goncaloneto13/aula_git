@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Menu {
 	private String title;
 	private List<String> options;
+	
 
 	public Menu(List<String> options) {
 		this.title = "Menu";

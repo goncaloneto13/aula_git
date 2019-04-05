@@ -24,11 +24,17 @@ public class Operacao {
 		this.valor = valor;
 	}
 	
-	public void transferencia(Conta c1, Conta c2, float valor){
-		if(valor >= c1.saldo){
-			c1.setSaldo(c1.getSaldo() - valor);
-			c2.setSaldo(c2.getSaldo() + valor);
-		}
+	public void transferencia(int c1, int c2, float valor){
+		//for(int i = 0; i < cliente.size(); i++){
+			//cliente[i].getConta(c1)
+		//}
+		//for(int i = 0; i < cliente.size(); i++){
+			//cliente[i].getConta(c2)
+		//}
+		//if(valor >= c1.saldo){
+			//c1.setSaldo(c1.getSaldo() - valor);
+			//c2.setSaldo(c2.getSaldo() + valor);
+		//}
 		
 	}
 }
