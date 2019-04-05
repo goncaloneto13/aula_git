@@ -44,4 +44,21 @@ public class Main {
 		return clientes;
 	}
 
+	public static Cliente BuscarCliente (String nomeDoCliente)
+	{
+		for (Cliente c : clientes)
+		{
+			if (c.getNome() == nomeDoCliente)
+			{
+				return c;
+			}
+		}
+
+		return null;
+	}
+
+	public static Conta BuscarConta (Cliente cliente, int numeroDaConta)
+	{
+		return cliente.getConta(numeroDaConta);
+	}
 }
