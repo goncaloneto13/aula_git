@@ -35,9 +35,8 @@ public class Cliente {
 		this.agencia = n;
 	}
 
-	public Cliente(String nome, Conta c, int a) {
+	public Cliente(String nome, int a) {
 		this.setNome(nome);
 		this.setAgencia(a);
-		this.setConta(c);
 	}
 }
