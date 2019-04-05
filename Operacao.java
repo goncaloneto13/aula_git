@@ -1,13 +1,19 @@
 
 public class Operacao {
 
-	int tipo;
-	float valor;
+	private int tipo;
+	private float valor;
 
-	public void executar() {
-
+	//saque = 1 
+	//deposito = 2
+	//tranferencia  = 3
+	
+	public Operacao(int tipo,float valor) {
+		this.tipo = tipo;
+		this.valor = valor;
 	}
-
+	
+	
 	public int getTipo() {
 		return tipo;
 	}
@@ -28,14 +34,5 @@ public class Operacao {
 
 
 
-public void deposito(Conta c,float valor){
-	c.setSaldo(c.getSaldo()+valor);
-}
 
-
-public void saque(Conta c,float valor){
-	if(valor>=c.getSaldo()){
-		c.setSaldo(c.getSaldo()-valor);
-}
-}
 }
