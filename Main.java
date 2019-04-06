@@ -27,49 +27,7 @@ public class Main {
 				}if(resul == 2){
 					
 				}if(resul == 3){
-					System.out.println("Informe o nome do cliente que deseja transferir:");
-					s = new Scanner(System.in);
-					String cliente1 = s.nextLine();
-					Cliente c1 = this.BuscarCliente(cliente1);
-					if(c1 == null){
-						System.out.println("Cliente não encontrado");
-						return;
-					}
-					System.out.println("Informe o número da conta que deseja transferir:");
-					s = new Scanner(System.in);
-					int conta1 = s.nextInt();
-					Conta continha = c1.getConta(conta1);
-					if(continha == null){
-						System.out.println("Conta não encontrada");
-						return
-					}
-					System.out.println("Informe o nome do cliente que receberá a transferência:");
-					s = new Scanner(System.in);
-					String cliente2 = s.nextLine();
-					Cliente c2 = this.BuscarCliente(cliente2);
-					if(c1 == null){
-						System.out.println("Cliente não encontrado");
-						return
-					}
-					System.out.println("Informe o número da conta que receberá a quantia:");
-					s = new Scanner(System.in);
-					int conta2 = s.nextInt();
-					Conta continha2 = c1.getConta(conta2);
-					if(continha == null){
-						System.out.println("Conta não encontrada");
-						return;
-					}
-					System.out.println("Informe a quantia que deseja transferir:");
-					s = new Scanner(System.in);
-					float valor = s.nextFloat();
-					if(valor < 1){
-						System.out.println("Não é possível transferir essa quantia");
-						return;
-					}
-					Operacao operarei = new Operacao();
-					operarei.transferencia(continha, continha2, valor);
-					continha.setOperacoes(operarei);
-					continha2.setOperacoes(operarei);
+					realizaTransferencia();
 				}
 			}
 		} while (op != 4);
@@ -119,6 +77,51 @@ public class Main {
 		}
 	}
 	
+	public static Cliente pegaCliente(){
+		
+		s = new Scanner(System.in);
+		String cliente1 = s.nextLine();
+		Cliente c1 = BuscarCliente(cliente1);
+		if(c1 == null){
+			System.out.println("Cliente não encontrado");
+			return;
+		}
+		return c1;
+	}
+	
+	public static Conta pegaConta(){
+		s = new Scanner(System.in);
+		int conta1 = s.nextInt();
+		Conta continha = buscaConta(c1, conta1)
+		if(continha == null){
+			System.out.println("Conta não encontrada");
+			return
+		}
+		return continha;
+	}
+	
+	public static realizaTransferencia(){
+		System.out.println("Transferência");
+		System.out.println("Informe o nome do cliente que deseja transferir:");
+		Cliente c1 = pegaCliente():
+		System.out.println("Informe o número da conta que deseja transferir:");
+		Cliente continha = pegaConta();
+		System.out.println("Informe o nome do cliente que receberá a transferência:");
+		Cliente c2 = pegaCliente(cliente2);
+		System.out.println("Informe o número da conta que receberá a quantia:");
+		Conta continha2 = pegaConta();
+		System.out.println("Informe a quantia que deseja transferir:");
+		s = new Scanner(System.in);
+		float valor = s.nextFloat();
+		if(valor < 1){
+			System.out.println("Não é possível transferir essa quantia");
+			return;
+		}
+		Operacao operarei = new Operacao();
+		operarei.transferencia(continha, continha2, valor);
+		continha.setOperacoes(operarei);
+		continha2.setOperacoes(operarei);
+	}
 
 
 	public static Conta BuscarConta (Cliente cliente, int numeroDaConta)
