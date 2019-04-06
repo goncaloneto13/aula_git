@@ -14,9 +14,8 @@ public class Cliente {
 	}
 
 	public Conta getConta(int num) {
-		for (int i = 0; i < contas.size(); i++) {
-			if (num == contas.get(i).getNum()) {
-				Conta c = new Conta();
+		for(Conta c: contas) {
+			if(c.getNum()==num) {
 				return c;
 			}
 		}
