@@ -22,53 +22,13 @@ public class Main {
 				Menu menuOperacoes = new Menu("Menu Operações", Arrays.asList("Saque", "Depósito", "Transferência"));
 				resul = menuOperacoes.getSelection();
 				if(resul == 1){
-					System.out.println("Informe o nome do Cliente");
-					String cliente = s.nextLine();
-					Cliente c = BuscarCliente(cliente);
 					
-					if(c == null){
-						System.out.println("Cliente não encontrado");break;
-						
-					}
-					System.out.println("informe o numero da conta");
-					int conta = s.nextInt();
-					Conta x = BuscarConta(c,conta);
-					if(x == null){
-						System.out.println("Conta não encontrada");
-						break;
-					}
-					System.out.println("Informe o valor do saque");
-					float valor = s.nextFloat();
-					if(valor>x.getSaldo()) {
-						System.out.println("saldo insuficiente"); break;
-					}else {x.saque(valor);}
-					
+					saqDep(1,"Saque");
 					
 					
 				}if(resul == 2){
 					
-					System.out.println("Informe o nome do Cliente");
-					String cliente = s.nextLine();
-					Cliente c = BuscarCliente(cliente);
-					if(c == null){
-						System.out.println("Cliente não encontrado");
-						break;
-					}
-					System.out.println("informe o numero da conta");
-					int conta = s.nextInt();
-					Conta x = BuscarConta(c,conta);
-					if(x == null){
-						System.out.println("Conta não encontrada");
-						break;
-					}
-					System.out.println("Informe o valor do deposito");
-					float valor = s.nextFloat();
-					if(valor<=0) {
-						System.out.println("valor invalido"); break;
-					}else {x.deposito(valor);}
-					
-					
-					
+					saqDep(2,"Deposito");
 					
 					
 				}if(resul == 3){
@@ -114,6 +74,46 @@ public class Main {
 		} while (op != 4);
 
 		System.out.println("Fim!\n\n");
+	}
+	
+	
+	public static void saqDep(int tipo,String nome) {
+		Scanner s = new Scanner(System.in);
+		System.out.println("\n\nOperacao de "+nome);
+		System.out.println("Informe o nome do Cliente:");
+		String cliente = s.nextLine();
+		Cliente c = BuscarCliente(cliente);
+		if(c == null){
+			System.out.println("Cliente não encontrado");
+			return;
+		}
+		System.out.println("informe o numero da conta");
+		int conta = s.nextInt();
+		Conta x = BuscarConta(c,conta);
+		if(x == null){
+			System.out.println("Conta não encontrada");
+			return;
+		}
+		
+		System.out.println("Informe o valor do "+nome);
+		float valor = s.nextFloat();
+		if(tipo==1) {
+		if(valor>x.getSaldo()) {
+			System.out.println("saldo insuficiente"); 
+			return;
+		}else {
+			x.saque(valor);
+			}
+		}
+		if(tipo==2) {
+			if(valor<=0) {
+				System.out.println("valor invalido");
+				return;
+			}else {
+				x.deposito(valor);
+				}
+		}
+		System.out.println(nome+" realizado com sucesso!");
 	}
 
 	public static void cadastrarCliente() {

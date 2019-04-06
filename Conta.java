@@ -24,27 +24,24 @@ public class Conta {
 	public ArrayList<Operacao> getOperacoes() {
 		return operacoes;
 	}
-	public void setOperacoes(ArrayList<Operacao> operacoes) {
-		this.operacoes = operacoes;
+	public void setOperacoes(Operacao op) {
+		this.operacoes.add(op);
 	}
 	
 	public void saque(float valor){
 		if(valor<=this.getSaldo() && valor>0){
-			Operacao op = new Operacao(1,valor);
-			operacoes.add(op);
+			setOperacoes(new Operacao(1,valor));
 			this.setSaldo(this.getSaldo()-valor);
 	}
 	}
 	public void deposito(float valor){
 		if(valor>0) {
-			Operacao op = new Operacao(2,valor);
-			operacoes.add(op);
+			setOperacoes(new Operacao(2,valor));
 			this.setSaldo(this.getSaldo()+valor);
 		
 		}
 	}
 
-	
 	public void transferencia(Conta c1, Conta c2, float valor) {
 		if (valor <= c1.saldo) {
 			c1.setSaldo(c1.getSaldo() - valor);
