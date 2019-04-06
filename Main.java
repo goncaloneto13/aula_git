@@ -5,7 +5,11 @@ import java.util.Scanner;
 public class Main {
 
 	private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-	
+
+	private static Scanner s;
+	private static int numContas = 0;
+
+
 	public static void main(String[] args) {
 		int op;
 		 Scanner s = new Scanner(System.in);
@@ -14,13 +18,14 @@ public class Main {
 			op = mainMenu.getSelection();
 
 			if (op == 1) {
-
+				MenuConta();
 			} else if (op == 2) {
 				cadastrarCliente();
 			} else if (op == 3) {
 				int resul;
-				Menu menuOperacoes = new Menu("Menu Operações", Arrays.asList("Saque", "Depósito", "Transferência"));
+				Menu menuOperacoes = new Menu("Menu OperaÃ§Ãµes", Arrays.asList("Saque", "DepÃ³sito", "TransferÃªncia"));
 				resul = menuOperacoes.getSelection();
+
 				if(resul == 1){
 					
 					saqDep(1,"Saque");
@@ -32,43 +37,45 @@ public class Main {
 					
 					
 				}if(resul == 3){
+
 					System.out.println("Informe o nome do cliente que deseja transferir:");
 					
 					String cliente1 = s.nextLine();
+
 					Cliente c1 = BuscarCliente(cliente1);
 					if(c1 == null){
-						System.out.println("Cliente não encontrado"); break;
+						System.out.println("Cliente nï¿½o encontrado"); break;
 					}
-					System.out.println("Informe o número da conta que deseja transferir:");
+					System.out.println("Informe o nï¿½mero da conta que deseja transferir:");
 				
 					int conta1 = s.nextInt();
 					Conta continha = BuscarConta(c1,conta1);
 					if(continha == null){
-						System.out.println("Conta não encontrada"); break;
+						System.out.println("Conta nï¿½o encontrada"); break;
 					}
-					System.out.println("Informe o nome do cliente que receberá a transferência:");
+					System.out.println("Informe o nome do cliente que receberï¿½ a transferï¿½ncia:");
 				
 					String cliente2 = s.nextLine();
 					Cliente c2 = BuscarCliente(cliente2);
 					if(c2 == null){
-						System.out.println("Cliente não encontrado");
+						System.out.println("Cliente nï¿½o encontrado");
 						break;
 					}
-					System.out.println("Informe o número da conta que receberá a quantia:");
+					System.out.println("Informe o nï¿½mero da conta que receberï¿½ a quantia:");
 					
 					int conta2 = s.nextInt();
 					Conta continha2 = BuscarConta(c2,conta2);
 					if(continha2 == null){
-						System.out.println("Conta não encontrada"); break;
+						System.out.println("Conta nï¿½o encontrada"); break;
 					}
 					System.out.println("Informe a quantia que deseja transferir:");
 					
 					float valor = s.nextFloat();
+
 					if(valor <= 0 ){
-						System.out.println("Não é possível transferir essa quantia"); break;
+						System.out.println("Nï¿½o ï¿½ possï¿½vel transferir essa quantia"); break;
 					}
 					continha.transferencia(continha,continha2,valor);
-
 				}
 			}
 		} while (op != 4);
@@ -84,14 +91,14 @@ public class Main {
 		String cliente = s.nextLine();
 		Cliente c = BuscarCliente(cliente);
 		if(c == null){
-			System.out.println("Cliente não encontrado");
+			System.out.println("Cliente nï¿½o encontrado");
 			return;
 		}
 		System.out.println("informe o numero da conta");
 		int conta = s.nextInt();
 		Conta x = BuscarConta(c,conta);
 		if(x == null){
-			System.out.println("Conta não encontrada");
+			System.out.println("Conta nï¿½o encontrada");
 			return;
 		}
 		
@@ -135,10 +142,9 @@ public class Main {
 		return clientes;
 	}
 
-	public static Cliente BuscarCliente (String nomeDoCliente)
-	{
-		for (Cliente c : clientes){
-			if (c.getNome().contentEquals(nomeDoCliente)){
+	public static Cliente BuscarCliente(String nomeDoCliente) {
+		for (Cliente c : clientes) {
+			if (c.getNome().equals(nomeDoCliente)) {
 				return c;
 			}
 		}
@@ -146,8 +152,56 @@ public class Main {
 		return null;
 	}
 
-	public static Conta BuscarConta (Cliente cliente, int numeroDaConta)
-	{
+	public static Conta BuscarConta(Cliente cliente, int numeroDaConta) {
 		return cliente.getConta(numeroDaConta);
+	}
+
+	public static void MenuConta() {
+		System.out.println("\n\n Menu de Conta");
+		System.out.println("Nome do Cliente: ");
+
+		s = new Scanner(System.in);
+		String nomeDoCliente = s.nextLine();
+		Cliente cliente = BuscarCliente(nomeDoCliente);
+
+		if (cliente != null) {
+			System.out.println("1. Criar nova conta.");
+			System.out.println("2. Buscar Conta.");
+			s = new Scanner(System.in);
+
+			switch (s.nextInt()) {
+			case 1:
+				int num = CriarConta(cliente);
+				System.out.println("Conta criada com sucesso!\nNumero da conta: " + num);
+				break;
+			case 2:
+				System.out.println("\nDigite o nÃºmero da conta: ");
+				s = new Scanner(System.in);
+
+				Conta conta = BuscarConta(cliente, s.nextInt());
+
+				if (conta != null) {
+					System.out.println("\nSaldo: " + conta.getSaldo());
+					System.out.println("\nOperaÃ§Ãµes: " + conta.getOperacoes().toString());
+				} else
+					System.out.println("Conta nÃ£o encontrada!");
+				break;
+			default:
+				System.out.println("OpÃ§Ã£o nÃ£o consta no menu.");
+				break;
+			}
+		} else {
+			System.out.println("Cliente nÃ£o encontrado!");
+		}
+	}
+
+	public static int CriarConta(Cliente cliente) {
+		Conta conta = new Conta();
+
+		numContas++;
+
+		conta.setNum(numContas);
+		cliente.setConta(conta);
+		return numContas;
 	}
 }
