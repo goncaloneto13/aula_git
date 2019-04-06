@@ -30,33 +30,30 @@ public class Main {
 					System.out.println("Informe o nome do cliente que deseja transferir:");
 					s = new Scanner(System.in);
 					String cliente1 = s.nextLine();
-					//Cliente c1 = clientes.BuscarCliente(cliente1);
-					if(clientes.BuscarCliente(cliente1) == null){
+					Cliente c1 = clientes.BuscarCliente(cliente1);
+					if(c1 == null){
 						System.out.println("Cliente não encontrado");
-						return
 					}
 					System.out.println("Informe o número da conta que deseja transferir:");
 					s = new Scanner(System.in);
 					int conta1 = s.nextInt();
-					if(clientes.BuscarCliente(cliente1).getConta(conta1) == null){
+					Conta continha = c1.getConta(conta1);
+					if(continha == null){
 						System.out.println("Conta não encontrada");
-						return
 					}
 					System.out.println("Informe o nome do cliente que receberá a transferência:");
 					s = new Scanner(System.in);
 					String cliente2 = s.nextLine();
-					//Cliente c2 = clientes.BuscarCliente(cliente2);
-					if(clientes.BuscarCliente(cliente2) == null){
+					Cliente c2 = clientes.BuscarCliente(cliente2);
+					if(c1 == null){
 						System.out.println("Cliente não encontrado");
-						return;
 					}
 					System.out.println("Informe o número da conta que receberá a quantia:");
 					s = new Scanner(System.in);
 					int conta2 = s.nextInt();
-					
-					if(clientes.BuscarCliente(cliente2).getConta(conta2) == null){
+					Conta continha2 = c1.getConta(conta2);
+					if(continha == null){
 						System.out.println("Conta não encontrada");
-						return
 					}
 					System.out.println("Informe a quantia que deseja transferir:");
 					s = new Scanner(System.in);
@@ -65,9 +62,17 @@ public class Main {
 						System.out.println("Não é possível transferir essa quantia");
 					}
 					Operacao operarei = new Operacao();
-					operarei.transferencia(c1.getConta(conta1), c2.getConta(conta2), valor);
-					clientes.BuscarCliente(cliente1).getConta(conta1).setOperacoes(operarei);
-					clientes.BuscarCliente(cliente2).getConta(conta2).setOperacoes(operarei);
+					operarei.transferencia(continha, continha2, valor);
+					continha.setOperacoes(operarei);
+					continha2.setOperacoes(operarei);
+					int ind1;
+					int ind2;
+					ind1 = BuscaIndice(cliente1);
+					ind2 = BuscaIndice(cliente2);
+					//agente pode fazer isso em java? acho que sim
+
+					clientes[ind1] = continha;
+					clientes[ind2] = continha2;
 				}
 			}
 		} while (op != 4);
