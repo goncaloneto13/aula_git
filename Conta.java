@@ -49,9 +49,9 @@ public class Conta {
 			Operacao op = new Operacao(3,valor);
 			operacoes.add(op);
 			System.out.println("Transferência completa");
+		}else{
+			System.out.println("Saldo insuficiente");
 		}
-		System.out.println("Saldo insuficiente");
-		
 
 	}
 	
