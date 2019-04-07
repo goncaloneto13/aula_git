@@ -202,9 +202,22 @@ public static void realizaTransferencia(){
 
 				if (conta != null) {
 					System.out.println("\nSaldo: " + conta.getSaldo());
-					
+					System.out.println("\nLista de operações: ");
 					for (Operacao o : conta.getOperacoes()) {
-						System.out.println("\nTipo: " + o.getTipo() + "\nValor: " + o.getValor());
+						switch (o.getTipo()) {
+						case 1:
+							System.out.println("\nTipo: Saque");
+							break;
+						case 2:
+							System.out.println("\nTipo: Depósito");
+							break;
+						case 3:
+							System.out.println("\nTipo: Transferência");
+							break;
+						default:
+							break;
+						}
+						System.out.println("\nValor: " + o.getValor());
 					}
 				} else
 					System.out.println("Conta nÃ£o encontrada!");
