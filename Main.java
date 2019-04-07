@@ -195,14 +195,30 @@ public static void realizaTransferencia(){
 				System.out.println("Conta criada com sucesso!\nNumero da conta: " + num);
 				break;
 			case 2:
-				System.out.println("\nDigite o nÃºmero da conta: ");
+				System.out.println("\nDigite o número da conta: ");
 				s = new Scanner(System.in);
 
 				Conta conta = BuscarConta(cliente, s.nextInt());
 
 				if (conta != null) {
 					System.out.println("\nSaldo: " + conta.getSaldo());
-					System.out.println("\nOperaÃ§Ãµes: " + conta.getOperacoes().toString());
+					System.out.println("\nLista de operações: ");
+					for (Operacao o : conta.getOperacoes()) {
+						switch (o.getTipo()) {
+						case 1:
+							System.out.println("\nTipo: Saque");
+							break;
+						case 2:
+							System.out.println("\nTipo: Depósito");
+							break;
+						case 3:
+							System.out.println("\nTipo: Transferência");
+							break;
+						default:
+							break;
+						}
+						System.out.println("Valor: " + o.getValor());
+					}
 				} else
 					System.out.println("Conta nÃ£o encontrada!");
 				break;
