@@ -217,7 +217,7 @@ public static void realizaTransferencia(){
 						default:
 							break;
 						}
-						System.out.println("\nValor: " + o.getValor());
+						System.out.println("Valor: " + o.getValor());
 					}
 				} else
 					System.out.println("Conta nÃ£o encontrada!");
